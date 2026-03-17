@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // On laisse vide ou on retire les lignes url/directUrl
+  // car elles sont maintenant dans prisma.config.ts
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  client      String
+  type        String
+  description String
+  images      String[]
+  stars       Int      @default(0)
+  date        DateTime @default(now())
+}
+
+model Message {
+  id      String   @id @default(uuid())
+  name    String
+  email   String
+  subject String
+  content String
+  status  String   @default("nouveau")
+  date    DateTime @default(now())
+}
