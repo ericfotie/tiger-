@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* --- VARIABLES DE MARQUE --- */
+:root {
+  --tiger-yellow: #FFB800;
+  --tiger-black: #1A1A1A;
+  --tiger-gray: #F5F5F5;
+}
+
+/* --- EXTENSIONS TIGER CONSTRUCTION --- */
+
+/* Effet de texte détouré avec lueur au survol */
+@utility text-outline {
+  -webkit-text-stroke: 1.5px var(--tiger-yellow);
+  color: transparent;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 2px rgba(255, 184, 0, 0));
+
+  &:hover {
+    color: var(--tiger-yellow);
+    -webkit-text-stroke: 1.5px transparent;
+    filter: drop-shadow(0 0 15px rgba(255, 184, 0, 0.4));
+  }
+}
+
+/* Grille d'architecte captivante */
+@utility bg-construction-grid {
+  background-image:
+    linear-gradient(rgba(255, 184, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 184, 0, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+/* Ombre premium pour les dossiers techniques */
+@utility tiger-shadow {
+  box-shadow: 0 30px 60px -12px rgba(26, 26, 26, 0.15),
+              0 18px 36px -18px rgba(0, 0, 0, 0.2);
+}
+
+/* --- ANIMATIONS CAPTIVANTES --- */
+
+@keyframes subtle-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes progress-loading {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.animate-zoom {
+  animation: subtle-zoom 20s infinite alternate linear;
+}
+
+/* --- RÉGLAGES GLOBAUX --- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-[#1A1A1A] bg-[#FDFDFD];
+    font-feature-settings: "pnum" on, "lnum" on;
+  }
+
+  /* Sélection de texte aux couleurs Tiger */
+  ::selection {
+    background-color: var(--tiger-yellow);
+    color: var(--tiger-black);
+  }
+}
+
+/* --- COMPOSANTS PERSONNALISÉS --- */
+
+/* Barre de défilement (Scrollbar) Style Industriel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tiger-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tiger-black);
+  border: 2px solid var(--tiger-gray);
+  border-radius: 0px; /* Look carré plus "Génie Civil" */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tiger-yellow);
+}
+
+/* Effet de brillance au survol des cartes */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::after {
+  content: "";
+  position: absolute;
+  top: -110%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s hover;
+}
+
+.card-shine:hover::after {
+  opacity: 1;
+  top: -30%;
+  left: -30%;
+  transition-property: left, top, opacity;
+  transition-duration: 0.7s, 0.7s, 0.15s;
+  transition-timing-function: ease;
+}

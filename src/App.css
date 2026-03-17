@@ -1,0 +1,61 @@
+/* --- VARIABLES DE COULEURS TIGER --- */
+:root {
+  --tiger-yellow: #FFB800;
+  --tiger-black: #1A1A1A;
+  --tiger-gray: #F5F5F5;
+}
+
+/* --- VOS CLASSES PERSONNALISÉES (DÉJÀ AJUSTÉES) --- */
+
+.text-outline {
+  -webkit-text-stroke: 1px var(--tiger-yellow);
+  color: transparent;
+  transition: all 0.4s ease;
+}
+
+.text-outline:hover {
+  color: var(--tiger-yellow);
+}
+
+.bg-construction-grid {
+  background-image: linear-gradient(rgba(255, 184, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 184, 0, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* --- AJUSTEMENTS DE RESPONSIVITÉ --- */
+
+#center {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+  padding: 80px 20px;
+
+  @media (max-width: 1024px) {
+    padding: 40px 20px;
+  }
+}
+
+/* Animation de vibration pour les erreurs de mot de passe admin */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.2s ease-in-out 0s 2;
+}
+
+/* --- STYLE DES CARTES PROJETS --- */
+.project-card-shadow {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card-shadow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(255, 184, 0, 0.1);
+}
