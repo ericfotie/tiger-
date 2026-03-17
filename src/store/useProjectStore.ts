@@ -29,11 +29,13 @@ interface TigerStore {
   isAuthenticated: boolean;
   login: (password: string) => boolean;
   logout: () => void;
+  // --- ACTIONS ---
   addMessage: (msg: Omit<Message, 'id' | 'date' | 'status'>) => void;
   deleteMessage: (id: string) => void;
   addProject: (project: Omit<Project, 'id' | 'date'>) => void;
   updateProject: (id: string, updatedProject: Omit<Project, 'id' | 'date'>) => void;
   deleteProject: (id: string) => void;
+  addStar: (projectId: string) => void; // Ajouté pour corriger l'erreur Home.tsx
 }
 
 export const useProjectStore = create<TigerStore>()(
@@ -89,10 +91,17 @@ export const useProjectStore = create<TigerStore>()(
       deleteProject: (id) => set((state) => ({
         projects: state.projects.filter(p => p.id !== id)
       })),
+
+      // Logique pour ajouter des étoiles aux projets
+      addStar: (projectId) => set((state) => ({
+        projects: state.projects.map((p) =>
+          p.id === projectId ? { ...p, stars: (p.stars || 0) + 1 } : p
+        )
+      })),
     }),
     {
       name: 'tiger-project-storage',
-      storage: createJSONStorage(() => localStorage), // Sécurité pour le build Vercel/SSR
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );
