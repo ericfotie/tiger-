@@ -1,4 +1,4 @@
-import { HardHat, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { HardHat, Mail, Phone, Facebook, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Footer() {
@@ -6,7 +6,7 @@ export default function Footer() {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-[#1A1A1A] text-white pt-20 pb-10 px-6 border-t-4 border-[#FFB800]">
+    <footer className="bg-[#0F172A] text-white pt-20 pb-10 px-6 border-t-4 border-[#FFB800]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
         {/* COLONNE 1 : IDENTITÉ */}
@@ -16,7 +16,7 @@ export default function Footer() {
             <span className="font-black uppercase tracking-tighter text-2xl">Tiger Construction</span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
-            Leader dans l'ingénierie et la construction d'infrastructures au Cameroun.
+            Leader dans l'ingénierie et la construction d'infrastructures au Cameroun. L'excellence au service du développement durable.
           </p>
           <div className="flex gap-4">
             <SocialIcon icon={<Facebook size={18} />} href="#" />
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COLONNE 2 : NAVIGATION (NETTOYÉE - PLUS D'ESPACE PRO ICI) */}
+        {/* COLONNE 2 : NAVIGATION (MISE À JOUR) */}
         <div>
           <h4 className="font-black uppercase text-sm mb-6 tracking-widest border-b border-white/10 pb-2">Navigation</h4>
           <ul className="space-y-4 text-gray-400 text-sm font-bold uppercase">
@@ -35,13 +35,8 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/projets" className="hover:text-[#FFB800] transition-colors flex items-center gap-2 group">
-                Réalisations <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-all" />
-              </Link>
-            </li>
-            <li>
               <Link to="/contact" className="hover:text-[#FFB800] transition-colors flex items-center gap-2 group">
-                Contact & Devis <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-all" />
+                Expertise & Devis <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-all" />
               </Link>
             </li>
           </ul>
@@ -51,8 +46,14 @@ export default function Footer() {
         <div>
           <h4 className="font-black uppercase text-sm mb-6 tracking-widest border-b border-white/10 pb-2">Expertise</h4>
           <ul className="space-y-4 text-gray-400 text-xs font-medium">
-            <li className="flex flex-col"><span className="text-white font-black italic uppercase text-[10px]">Génie Civil</span> Infrastructures routières.</li>
-            <li className="flex flex-col"><span className="text-white font-black italic uppercase text-[10px]">Bureau d'études</span> Audits techniques.</li>
+            <li className="flex flex-col mb-2">
+              <span className="text-white font-black italic uppercase text-[10px] text-[#FFB800]">Génie Civil</span>
+              Infrastructures routières et ponts.
+            </li>
+            <li className="flex flex-col">
+              <span className="text-white font-black italic uppercase text-[10px] text-[#FFB800]">Bureau d'études</span>
+              Calcul de structures et audits.
+            </li>
           </ul>
         </div>
 
@@ -62,29 +63,29 @@ export default function Footer() {
           <ul className="space-y-4 text-gray-400 text-sm">
             <li className="flex items-center gap-3">
               <Phone size={20} className="text-[#FFB800]" />
-              <span className="font-bold text-white">+237 653 268 165</span>
+              <span className="font-black text-white">+237 653 268 165</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={20} className="text-[#FFB800]" />
-              <span className="break-all text-[12px]">ericfotie13@gmail.com</span>
+              <span className="break-all text-[11px] font-bold">ericfotie13@gmail.com</span>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* SECTION FINALE : COPYRIGHT + LE SEUL ACCÈS RESTANT (MICRO-POINT) */}
+      {/* SECTION FINALE */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 relative">
-        <p className="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-          © {currentYear} Tiger Construction. Infrastructures durables.
+        <p className="text-gray-500 text-[9px] font-black uppercase tracking-[0.2em]">
+          © {currentYear} Tiger Construction. Tous droits réservés.
         </p>
-        <p className="text-gray-600 text-[10px] font-bold uppercase tracking-[0.2em]">
+        <p className="text-gray-600 text-[9px] font-black uppercase tracking-[0.2em]">
           Designed by <span className="text-[#FFB800]">Eric.Dev</span>
         </p>
 
-        {/* LE POINT SECRET : Micro-poussière de 1px en bas à droite */}
+        {/* LE POINT SECRET D'ADMINISTRATION */}
         <button
           onClick={() => navigate('/admin')}
-          className="absolute -bottom-2 -right-2 w-1 h-1 bg-white/5 cursor-default hover:bg-[#FFB800]/50 transition-colors"
+          className="absolute -bottom-2 -right-2 w-1 h-1 bg-white/5 cursor-default hover:bg-[#FFB800] transition-colors"
           aria-hidden="true"
         />
       </div>

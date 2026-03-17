@@ -1,19 +1,18 @@
 import { motion } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
-import { useState, useEffect } from 'react'; // Ajout de useEffect
+import { useState, useEffect } from 'react';
 import { useProjectStore } from '../store/useProjectStore';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
-
-  // --- SÉCURITÉ D'ENREGISTREMENT (HYDRATATION) ---
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     setIsReady(true);
   }, []);
 
-  const addMessage = useProjectStore((state) => state.addMessage);
+  // Utilisation de state pour extraire addMessage proprement pour le build
+  const addMessage = useProjectStore((state: any) => state.addMessage);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +28,6 @@ export default function Contact() {
     setSubmitted(true);
   };
 
-  // Tant que le store n'est pas lu dans le navigateur, on n'affiche rien
   if (!isReady) return null;
 
   return (

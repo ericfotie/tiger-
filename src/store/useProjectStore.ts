@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Message {
@@ -26,11 +26,9 @@ interface Project {
 interface TigerStore {
   projects: Project[];
   messages: Message[];
-  // --- NOUVEAUX ÉTATS AUTH ---
   isAuthenticated: boolean;
   login: (password: string) => boolean;
   logout: () => void;
-  // --- ACTIONS ---
   addMessage: (msg: Omit<Message, 'id' | 'date' | 'status'>) => void;
   deleteMessage: (id: string) => void;
   addProject: (project: Omit<Project, 'id' | 'date'>) => void;
@@ -43,12 +41,9 @@ export const useProjectStore = create<TigerStore>()(
     (set) => ({
       projects: [],
       messages: [],
-
-      // --- LOGIQUE D'AUTHENTIFICATION ---
       isAuthenticated: false,
 
       login: (password: string) => {
-        // Définissez votre mot de passe ici
         if (password === 'Tiger2026') {
           set({ isAuthenticated: true });
           return true;
@@ -58,7 +53,6 @@ export const useProjectStore = create<TigerStore>()(
 
       logout: () => set({ isAuthenticated: false }),
 
-      // --- GESTION DES MESSAGES ---
       addMessage: (msg) => set((state) => ({
         messages: [
           {
@@ -75,7 +69,6 @@ export const useProjectStore = create<TigerStore>()(
         messages: state.messages.filter(m => m.id !== id)
       })),
 
-      // --- GESTION DES PROJETS ---
       addProject: (project) => set((state) => ({
         projects: [
           {
@@ -89,9 +82,7 @@ export const useProjectStore = create<TigerStore>()(
 
       updateProject: (id, updatedProject) => set((state) => ({
         projects: state.projects.map((p) =>
-          p.id === id
-            ? { ...p, ...updatedProject }
-            : p
+          p.id === id ? { ...p, ...updatedProject } : p
         )
       })),
 
@@ -101,6 +92,7 @@ export const useProjectStore = create<TigerStore>()(
     }),
     {
       name: 'tiger-project-storage',
+      storage: createJSONStorage(() => localStorage), // Sécurité pour le build Vercel/SSR
     }
   )
 );

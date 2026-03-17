@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Star, HardHat, Ruler, ArrowRight, ShieldCheck, Construction, MapPin, CheckCircle2, Award, Building2 } from 'lucide-react';
+// Nettoyage des icônes inutilisées pour corriger les erreurs de build
+import { Star, ArrowRight, ShieldCheck, MapPin, CheckCircle2, Award, Building2 } from 'lucide-react';
 import { useProjectStore } from '../store/useProjectStore';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden bg-[#F8FAFC]">
-      {/* --- 1. HERO SECTION (PUBLICITÉ PRINCIPALE) --- */}
+      {/* --- 1. HERO SECTION --- */}
       <section className="relative h-[85vh] flex items-center justify-center bg-[#0F172A] text-white">
         <div className="absolute inset-0 opacity-20">
           <img
@@ -40,7 +41,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- 2. BARRE PUBLICITAIRE (AVANTAGES) --- */}
+      {/* --- 2. BARRE PUBLICITAIRE --- */}
       <section className="bg-white border-y border-gray-100 grid grid-cols-2 md:grid-cols-4 shadow-sm">
         <StatItem icon={<ShieldCheck className="text-[#FFB800]"/>} title="SÉCURITÉ" desc="Zéro Accident" />
         <StatItem icon={<Award className="text-[#FFB800]"/>} title="QUALITÉ" desc="Normes ISO" />
@@ -48,7 +49,7 @@ export default function Home() {
         <StatItem icon={<CheckCircle2 className="text-[#FFB800]"/>} title="DÉLAIS" desc="Livraison 100% On-time" />
       </section>
 
-      {/* --- 3. PLAN D'ACTION (CRÉDIBILITÉ) --- */}
+      {/* --- 3. PLAN D'ACTION --- */}
       <section id="plan" className="py-20 px-6 bg-[#0F172A] text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -84,7 +85,7 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.length > 0 ? projects.map((project) => (
+          {projects && projects.length > 0 ? projects.map((project) => (
             <motion.div key={project.id} className="bg-white border border-gray-100 shadow-xl group flex flex-col hover:border-[#FFB800] transition-colors">
               <div className="h-64 bg-gray-100 relative overflow-hidden">
                 <img src={project.images?.[0]} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0" />
@@ -94,16 +95,16 @@ export default function Home() {
               </div>
               <div className="p-8">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-black text-xl uppercase tracking-tighter">{project.title}</h3>
+                  <h3 className="font-black text-xl uppercase tracking-tighter text-[#0F172A]">{project.title}</h3>
                   <button onClick={() => addStar(project.id)} className="flex items-center gap-1.5 bg-gray-50 px-2 py-1">
                     <Star size={14} className="text-[#FFB800]" fill="#FFB800" />
-                    <span className="font-black text-xs">{project.stars}</span>
+                    <span className="font-black text-xs text-[#0F172A]">{project.stars}</span>
                   </button>
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed mb-6 italic">{project.description}</p>
                 <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-                  <span className="text-[10px] font-black text-gray-400 uppercase">Client: {project.client}</span>
-                  <Link to="/contact" className="text-[#FFB800] hover:text-black transition-colors"><ArrowRight size={20}/></Link>
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Client: {project.client}</span>
+                  <Link to="/contact" className="text-[#FFB800] hover:text-[#0F172A] transition-colors"><ArrowRight size={20}/></Link>
                 </div>
               </div>
             </motion.div>
@@ -111,31 +112,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- 5. LOCALISATION & CONTACT (PIED DE PAGE DENSE) --- */}
+      {/* --- 5. LOCALISATION --- */}
       <section className="bg-white border-t-8 border-[#FFB800]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2">
           <div className="p-12 md:p-20 bg-gray-50">
             <div className="flex items-center gap-3 text-[#FFB800] mb-6">
               <MapPin size={32} />
-              <h3 className="text-3xl font-black uppercase text-black">Siège Social</h3>
+              <h3 className="text-3xl font-black uppercase text-[#0F172A]">Siège Social</h3>
             </div>
             <p className="text-gray-600 text-lg font-medium leading-relaxed mb-8">
               Retrouvez l'excellence Tiger Construction au coeur de la capitale :<br /><br />
-              <strong className="text-black">Quartier Bastos, Avenue de l'Innovation</strong><br />
+              <strong className="text-[#0F172A]">Quartier Bastos, Avenue de l'Innovation</strong><br />
               Yaoundé - Cameroun
             </p>
             <div className="space-y-4">
               <div className="flex flex-col border-l-4 border-[#FFB800] pl-4">
                 <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Bureau Technique</span>
-                <span className="font-black text-black">+237 653 268 165</span>
+                <span className="font-black text-[#0F172A]">+237 653 268 165</span>
               </div>
             </div>
           </div>
           <div className="h-full bg-[#0F172A] relative overflow-hidden flex items-center justify-center text-center p-12">
              <div className="z-10">
-                <h4 className="text-[#FFB800] font-black text-4xl uppercase mb-4">Besoin d'un Devis ?</h4>
-                <p className="text-gray-400 text-sm mb-8">Réponse sous 24h par nos experts en génie civil.</p>
-                <Link to="/contact" className="inline-block bg-[#FFB800] text-black px-12 py-5 font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all">
+                <h4 className="text-[#FFB800] font-black text-4xl uppercase mb-4 tracking-tighter">Besoin d'un Devis ?</h4>
+                <p className="text-gray-400 text-sm mb-8 font-medium">Réponse sous 24h par nos experts en génie civil.</p>
+                <Link to="/contact" className="inline-block bg-[#FFB800] text-black px-12 py-5 font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all shadow-2xl">
                   Démarrer l'Étude
                 </Link>
              </div>
@@ -148,12 +149,11 @@ export default function Home() {
 }
 
 // --- SOUS-COMPOSANTS ---
-
 function StatItem({ icon, title, desc }: { icon: any, title: string, desc: string }) {
   return (
     <div className="p-6 flex flex-col items-center text-center border-r last:border-0 border-gray-100">
       <div className="mb-2">{icon}</div>
-      <h4 className="font-black text-sm uppercase leading-none">{title}</h4>
+      <h4 className="font-black text-sm uppercase leading-none text-[#0F172A]">{title}</h4>
       <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">{desc}</p>
     </div>
   );

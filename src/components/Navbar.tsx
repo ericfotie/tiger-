@@ -44,7 +44,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* DESKTOP MENU - ÉPURÉ */}
+        {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center gap-10">
           <div className="flex gap-8 font-bold text-[11px] uppercase tracking-[0.2em]">
             <CustomLink to="/" label="Accueil" active={location.pathname === "/"} />
@@ -76,6 +76,7 @@ export default function Navbar() {
   );
 }
 
+// Composant Interne pour les liens Desktop
 function CustomLink({ to, label, active }: { to: string, label: string, active: boolean }) {
   return (
     <Link to={to} className={`relative group transition-colors ${active ? 'text-[#FFB800]' : 'text-white/80 hover:text-white'}`}>
@@ -85,6 +86,7 @@ function CustomLink({ to, label, active }: { to: string, label: string, active: 
   );
 }
 
+// Composant Interne pour les liens Mobiles
 function MobileLink({ to, label, onClick }: { to: string, label: string, onClick: () => void }) {
   return (
     <Link
