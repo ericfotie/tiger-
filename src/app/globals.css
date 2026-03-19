@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tiger-yellow: #FFB800;
+  --color-tiger-dark: #1A1A1A;
+}
+
+/* On définit les styles de base sans @apply pour éviter les conflits au démarrage */
+:root {
+  background-color: #F4F5F7;
+  color: #1A1A1A;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Version corrigée pour Tailwind 4 */
+  .btn-tiger {
+    background-color: #1A1A1A;
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-tiger:hover {
+    background-color: #FFB800;
+    color: black;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    border-left: 8px solid #FFB800;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
